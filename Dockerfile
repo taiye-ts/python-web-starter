@@ -31,7 +31,6 @@ RUN apk add --no-cache  --virtual .build-deps \
 WORKDIR /app
 
 # Copy project files
-# COPY static /app/static
 COPY src /app
 
 ENV PYTHONPATH="/app:${PATH}"
