@@ -16,7 +16,7 @@ RUN apk add --no-cache  --virtual .run-deps \
 # ENVIRONMENT - "prod" or "dev"
 ARG PROJECT_ENVIRONMENT=dev
 
-COPY requirements /app/requirements
+COPY env/requirements /app/requirements
 
 # Build packages
 RUN apk add --no-cache  --virtual .build-deps \
@@ -32,6 +32,6 @@ WORKDIR /app
 
 # Copy project files
 # COPY static /app/static
-COPY src /app/src
+COPY src /app
 
-ENV PYTHONPATH="/app:/app/src:${PATH}"
+ENV PYTHONPATH="/app:${PATH}"

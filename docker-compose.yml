@@ -23,7 +23,7 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data
     env_file:
-      - env.postgres.env
+      - env/database.env
     logging:
       driver: "json-file"
       options:
@@ -45,8 +45,8 @@ services:
   backend:
     build:
       dockerfile: Dockerfile
-      context: ./env
-    command: gunicorn -b 0.0.0.0:9050 --reload -w 1 --log-file - --log-level info --capture-output --max-requests 1000 --timeout 30 src.core.wsgi
+      context: ./
+    command: gunicorn -b 0.0.0.0:9050 --reload -w 1 --log-file - --log-level info --capture-output --max-requests 1000 --timeout 30 api:app
     restart: "no"
     depends_on:
       - postgres
@@ -54,8 +54,8 @@ services:
     volumes:
       - ./src:/app
     env_file:
-      - postgres.env
-      - service.env
+      - env/database.env
+      - ./env/service.env
     environment:
       - PROJECT_VERSION
       - PROJECT_ENVIRONMENT
