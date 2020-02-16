@@ -4,6 +4,7 @@ from typing import Optional
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker, Session as SQLAlchemySession
+
 from project_name.config import DATABASE_URL
 
 logger = logging.getLogger(__name__)

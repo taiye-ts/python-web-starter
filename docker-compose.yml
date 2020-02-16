@@ -54,7 +54,7 @@ services:
     volumes:
       - ./src:/app
     env_file:
-      - env/database.env
+      - ./env/database.env
       - ./env/service.env
     environment:
       - PROJECT_VERSION

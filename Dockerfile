@@ -2,9 +2,14 @@ FROM python:3.8.1-alpine3.10
 
 ENV PYTHONUNBUFFERED 1
 
+RUN chmod g+rx,o+rx /
+
 # Application packages
 RUN apk add --no-cache  --virtual .run-deps \
         vim \
+        bash \
+        gcc \
+        musl-dev \
         zlib-dev \
         postgresql \
         postgresql-dev \
@@ -32,5 +37,10 @@ WORKDIR /app
 
 # Copy project files
 COPY src /app
+
+# Copy dev tools configs
+RUN mkdir /python
+COPY .pylintrc /python
+COPY mypy.ini /python
 
 ENV PYTHONPATH="/app:${PATH}"
