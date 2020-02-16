@@ -1,13 +1,24 @@
-#/bin/sh
+#/bin/bash
 
 echo Enter project name
 read project_name
 
-files_to_sed=($(find -E . -type f -regex "^.py"))
-for entry in "${files_to_sed[@]}"
-  do
-    sed -i '' "s/project_name/$project_name/g" $entry
-  done
+function sed_files() {
+  local arr=("$@")
+  echo "${arr[@]}"
+  for entry in "${arr[@]}"
+    do
+      sed -i '' "s/project_name/$project_name/g" $entry
+    done
+}
 
-sed -i '' "s/project_name/$project_name/g" README.md
+files_to_sed=($(find -E . -type f -regex "^.*.py"))
+sed_files "${files_to_sed[@]}"
+
+additional_sed_files=(
+  README.md
+  Makefile
+)
+sed_files "${additional_sed_files[@]}"
+
 mv src/project_name src/$project_name
