@@ -16,9 +16,13 @@ files_to_sed=($(find -E . -type f -regex "^.*.py"))
 sed_files "${files_to_sed[@]}"
 
 additional_sed_files=(
-  README.md
+  README_after_generate.md
   Makefile
 )
 sed_files "${additional_sed_files[@]}"
 
 mv src/project_name src/$project_name
+rm README
+mv README_after_generate README.md
+
+echo Done
