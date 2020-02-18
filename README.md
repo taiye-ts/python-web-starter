@@ -13,6 +13,9 @@ Template for python web project:
 - postgres as db
 - layered architecture
 - typing
+- unittest as unit testing framework
+- docker image with debian slim 3.8 python
+- makefile for local development commands
 
 
 # Further documentation
