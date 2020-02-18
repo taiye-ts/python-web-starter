@@ -22,7 +22,8 @@ additional_sed_files=(
 sed_files "${additional_sed_files[@]}"
 
 mv src/project_name src/$project_name
-rm README
+mv src/tests/project_name src/tests/$project_name
+rm README.md
 mv README_after_generate README.md
 
 echo Done
