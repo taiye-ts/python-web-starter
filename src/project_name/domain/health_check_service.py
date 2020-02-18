@@ -5,6 +5,6 @@ class HealthCheckService:
 
     def get_status(self) -> HealthCheckStatus:
         return HealthCheckStatus(
-            api_health=True,
-            db_health=True,
+            api=True,
+            db=True,
         )

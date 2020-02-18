@@ -78,3 +78,11 @@ shell:
 dbshell:
 	@#@ Opens ipython database shell
 	@docker-compose exec backend PGPASSWORD=$DB_PASSWORD psql -h $DB_HOST -U docker -w
+
+
+.PHONY: tests
+tests:
+	@#@ Opens ipython database shell
+	@docker-compose exec backend python -m unittest discover
+
+

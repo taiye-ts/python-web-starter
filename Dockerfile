@@ -1,18 +1,16 @@
-FROM python:3.8.1-alpine3.10
+FROM python:3.8.1-slim
 
 ENV PYTHONUNBUFFERED 1
 
 RUN chmod g+rx,o+rx /
 
 # Application packages
-RUN apk add --no-cache  --virtual .run-deps \
+RUN apt-get update && apt-get install --assume-yes \
         vim \
         bash \
         gcc \
-        musl-dev \
-        zlib-dev \
+        libc6-dev \
         postgresql \
-        postgresql-dev \
         libxml2-dev \
         libxslt-dev \
     && mkdir -p /app \
@@ -24,14 +22,8 @@ ARG PROJECT_ENVIRONMENT=dev
 COPY env/requirements /app/requirements
 
 # Build packages
-RUN apk add --no-cache  --virtual .build-deps \
-        gcc \
-        musl-dev \
-        linux-headers \
-    && rm -rf /var/cache/apk/* \
-    && pip install --upgrade pip==19.3.1 \
-    && pip install --no-cache-dir -r /app/requirements/${PROJECT_ENVIRONMENT}.txt \
-    && apk del .build-deps
+RUN pip install --upgrade pip==19.3.1 \
+    && pip install --no-cache-dir -r /app/requirements/${PROJECT_ENVIRONMENT}.txt
 
 WORKDIR /app
 
