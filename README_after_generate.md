@@ -22,6 +22,7 @@ make db_upgrade - upgrades to latest migration
 make db_downgrade - downgrades to previous migration
 make shell - opens ipython shell
 make dbshell - opens database shell
+make tests - starts unit tests
 ```
 
 
