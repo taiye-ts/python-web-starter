@@ -2,6 +2,7 @@
 Simply git clone repo and use start.sh script
 ```shell script
 sh start.sh
+rm -rf .git
 ```
 
 # Description
@@ -10,9 +11,10 @@ Template for python web project:
 - sqlalchemy
 - alembic
 - postgres as db
-- some sort of layered architecture
+- layered architecture
 - typing
 
 
-# Further description
-[README after generate](README_after_generate.md)
+# Further documentation
+All docs regarding starting development environment and commands are described
+[here](README_after_generate.md)
